@@ -1,11 +1,10 @@
-import EfficiencyWidget from "./components/EfficiencyWidget";
-import React, {useState} from 'react'
+import React from "react";
 
 // Simple admin page (protected by asking for code). For production, replace with backend auth.
 export default function Admin(){
-  const [code, setCode] = useState('');
-  const [authorized, setAuthorized] = useState(false);
-  const [devices, setDevices] = useState([]);
+  const [code, setCode] = React.useState('');
+  const [authorized, setAuthorized] = React.useState(false);
+  const [devices, setDevices] = React.useState([]);
   function unlock(){ if(code==='admin-secret'){ setAuthorized(true); setDevices(['dev-abc123','dev-xyz789']); } else alert('Wrong code') }
   function addDevice(){ const id = prompt('Device ID to add'); if(id) setDevices(d=>[...d,id]) }
   return (
