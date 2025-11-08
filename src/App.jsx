@@ -38,11 +38,23 @@ export default function App() {
       ],
     };
 
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+      },
+      scales: {
+        y: { min: 70, max: 100, ticks: { stepSize: 5 } },
+      },
+    };
+
     return (
       <div className="card" style={{ padding: 16, background: "#f7f9fb" }}>
         <h3>Technician Efficiency</h3>
-        <Line data={data} />
-        <p style={{ marginTop: 8 }}>
+        <div style={{ height: 220 }}>
+          <Line data={data} options={options} />
+        </div>
+        <p style={{ marginTop: 8, fontSize: 13 }}>
           Live performance tracking — efficiency increases/decreases updated in real time.
         </p>
       </div>
@@ -56,7 +68,6 @@ export default function App() {
       </header>
 
       <div className="content">
-        {/* === TAB BUTTONS === */}
         <div className="tabs" role="tablist">
           <div
             className={`tab ${active !== "performance" ? "inactive" : ""}`}
@@ -84,15 +95,14 @@ export default function App() {
           </div>
         </div>
 
-        {/* === TAB CONTENT === */}
         {active === "performance" && (
-          <div>
-            <EfficiencyWidget />
-            <div className="card" style={{ marginTop: 16 }}>
-              <div className="small">Efficiency</div>
-              <div className="eff">{perf.eff}%</div>
-              <div className="small">Dollars / hour</div>
-              <div style={{ fontWeight: 700 }}>${perf.dollars.toFixed(2)}</div>
+          <div className="card">
+            <div className="small">Efficiency</div>
+            <div className="eff">{perf.eff}%</div>
+            <div className="small">Dollars / hour</div>
+            <div style={{ fontWeight: 700 }}>${perf.dollars.toFixed(2)}</div>
+            <div style={{ marginTop: 20 }}>
+              <EfficiencyWidget />
             </div>
           </div>
         )}
@@ -100,14 +110,16 @@ export default function App() {
         {active === "diagnostics" && (
           <div className="card">
             <h3>Diagnostics</h3>
-            <p className="small">VIN lookup and DTC guidance (FMCDealer integration via webview).</p>
+            <p className="small">
+              VIN lookup and DTC guidance (FMCDealer integration via webview).
+            </p>
           </div>
         )}
 
         {active === "resources" && (
           <div className="card">
-            <h3>Repair Videos</h3>
-            <p className="small">Legal, third-party instructional repair videos and walkthroughs.</p>
+            <h3>Repair Video Library</h3>
+            <p className="small">Common repair videos and training clips.</p>
           </div>
         )}
 
@@ -118,7 +130,6 @@ export default function App() {
           </div>
         )}
 
-        {/* === CHAT ASSISTANT === */}
         <div style={{ marginTop: 12 }}>
           <h4 style={{ marginBottom: 8 }}>Assistant</h4>
           <Chat />
