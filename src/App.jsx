@@ -13,13 +13,13 @@ export default function App(){
         <div className="tabs" role="tablist">
           <div className={`tab ${active!=='performance'?'inactive':''}`} onClick={()=>setActive('performance')}>Performance</div>
           <div className={`tab ${active!=='diagnostics'?'inactive':''}`} onClick={()=>setActive('diagnostics')}>Diagnostics</div>
-          <div className={`tab ${active!=='waveforms'?'inactive':''}`} onClick={()=>setActive('waveforms')}>Waveforms</div>
+          <div className={`tab ${active!=='resources'?'inactive':''}`} onClick={()=>setActive('resources')}>Resources</div>
           <div className={`tab ${active!=='multipoint'?'inactive':''}`} onClick={()=>setActive('multipoint')}>Multipoint</div>
         </div>
 
         {active==='performance' && <div className="card"><div className="small">Efficiency</div><div className="eff">{perf.eff}%</div><div className="small">Dollars / hour</div><div style={{fontWeight:700}}>${perf.dollars.toFixed(2)}</div></div>}
         {active==='diagnostics' && <div className="card"><h3>Diagnostics</h3><p className="small">VIN lookup and DTC guidance (FMCDealer integration via webview).</p></div>}
-        {active==='waveforms' && <div className="card"><h3>Waveform Library</h3><p className="small">Common diagnostic waveforms.</p></div>}
+        {active==='resources' && <div className="card"><h3>Resource Library</h3><p className="small">Common diagnostic Resources.</p></div>}
         {active==='multipoint' && <div className="card"><h3>Multipoint Inspection</h3><p className="small">Checklist items with green/yellow/red statuses.</p></div>}
 
         <div style={{marginTop:12}}>
