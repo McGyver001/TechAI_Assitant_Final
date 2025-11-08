@@ -1,3 +1,4 @@
+import EfficiencyWidget from "./components/EfficiencyWidget";
 import React, {useState} from 'react'
 
 // Simple admin page (protected by asking for code). For production, replace with backend auth.
